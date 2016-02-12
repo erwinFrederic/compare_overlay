@@ -1,0 +1,4 @@
+name = Compare Overlay
+description = Permet d'afficher le comparateur dans un popup
+core = "7.x"
+package = Orange

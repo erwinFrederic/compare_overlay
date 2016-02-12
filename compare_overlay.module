@@ -1,0 +1,30 @@
+<?php
+	
+	function comparateur_overlay_menu() {
+
+		$items = array();
+
+		$items['comparateur/%ctools_js/liste-comparaison'] = array(
+			'title' => 'Comparer des téléphones',
+			'page callback' => 'comparateur_overlay_display',
+			'page arguments' => array(1),
+			'access callback' => TRUE,
+			'type' => MENU_CALLBACK,
+		);
+
+		return items;
+	}
+
+	function comparateur_overlay_display($ajax) {
+		if ($ajax) {
+		    // Required includes for ctools to work:
+		    ctools_include('modal');
+		    ctools_include('ajax');
+		}
+
+		// Loading comparison block
+		$block = module_invoke('views', 'block_view', '7a64495a81d8a57e9bb6a914f3d69656');
+		$contents = render($block['content']);
+
+		return ctools_modal_render('Comparer', $contents) ;
+	}
